@@ -20,7 +20,7 @@ run:
 # Clean up generated files, Mininet, logs, and temporary files
 clean:
 	@echo "Cleaning up PCAP, logs, Mininet files, P4I, and JSON files..."
-	$(SUDO) rm -rf $(SRC_DIR)$(PCAP_DIR) $(SRC_DIR)$(LOG_DIR) $(SRC_DIR)$(MININET_LOG_DIR)
+	$(SUDO) rm -rf $(PCAP_DIR) $(LOG_DIR) $(MININET_LOG_DIR)
 	$(SUDO) rm -f $(SRC_DIR)$(P4I_FILES) $(SRC_DIR)$(JSON_FILES)
 	@echo "Running Mininet cleanup..."
 	$(SUDO) mn -c
@@ -29,5 +29,5 @@ clean:
 # Initialize necessary directories
 init:
 	@echo "Creating necessary directories..."
-	mkdir -p $(SRC_DIR)$(PCAP_DIR) $(SRC_DIR)$(LOG_DIR) $(SRC_DIR)$(MININET_LOG_DIR)
+	mkdir -p $(PCAP_DIR) $(LOG_DIR) $(MININET_LOG_DIR)
 	@echo "Directories initialized!"
