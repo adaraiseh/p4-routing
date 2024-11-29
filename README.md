@@ -1,4 +1,4 @@
-This repository is used by me to share research experiments based on P4. 
+This repository is used to share research experiments based on P4. 
 
 **Install P4utils on a clean Ubuntu 22.03** - this process will take a long time
 ```
