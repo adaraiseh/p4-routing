@@ -5,6 +5,8 @@ SCRIPT = network.py
 PCAP_DIR = pcap/
 LOG_DIR = logs/
 MININET_LOG_DIR = log/
+P4I_FILES = *.p4i
+JSON_FILES = *.json
 
 # Targets
 .PHONY: run clean init
@@ -14,12 +16,13 @@ run:
 	@echo "Running the P4 network simulation..."
 	$(SUDO) $(PYTHON) $(SCRIPT)
 
-# Clean up generated files, Mininet, and logs
+# Clean up generated files, Mininet, logs, and temporary files
 clean:
-	@echo "Cleaning up PCAP, logs, and Mininet files..."
+	@echo "Cleaning up PCAP, logs, Mininet files, P4I, and JSON files..."
 	$(SUDO) rm -rf $(PCAP_DIR) $(LOG_DIR) $(MININET_LOG_DIR)
+	$(SUDO) rm -f $(P4I_FILES) $(JSON_FILES)
 	@echo "Running Mininet cleanup..."
-	sudo mn -c
+	$(SUDO) mn -c
 	@echo "Cleanup complete!"
 
 # Initialize necessary directories
