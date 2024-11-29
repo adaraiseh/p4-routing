@@ -1,0 +1,54 @@
+Obtaining JSON from switch...
+Done
+Control utility for runtime P4 table manipulation
+RuntimeCmd: Adding entry to lpm match table routing_table
+match key:           LPM-0a:00:01:00/24
+action:              ipv4_forward
+runtime data:        0a:00:01:01	00:02
+Entry has been added with handle 0
+RuntimeCmd: Adding entry to lpm match table routing_table
+match key:           LPM-0a:00:02:00/24
+action:              ipv4_forward
+runtime data:        0a:00:02:01	00:03
+Entry has been added with handle 1
+RuntimeCmd: Adding entry to lpm match table routing_table
+match key:           LPM-0a:00:03:00/24
+action:              ipv4_forward
+runtime data:        c0:a8:01:02	00:01
+Entry has been added with handle 2
+RuntimeCmd: Adding entry to lpm match table routing_table
+match key:           LPM-0a:00:04:00/24
+action:              ipv4_forward
+runtime data:        c0:a8:01:02	00:01
+Entry has been added with handle 3
+RuntimeCmd: Adding entry to exact match table switching_table
+match key:           EXACT-0a:00:01:01
+action:              set_dmac
+runtime data:        00:00:00:00:01:01
+Entry has been added with handle 0
+RuntimeCmd: Adding entry to exact match table switching_table
+match key:           EXACT-0a:00:02:01
+action:              set_dmac
+runtime data:        00:00:00:00:02:01
+Entry has been added with handle 1
+RuntimeCmd: Adding entry to exact match table switching_table
+match key:           EXACT-c0:a8:01:02
+action:              set_dmac
+runtime data:        00:00:00:00:06:01
+Entry has been added with handle 2
+RuntimeCmd: Adding entry to exact match table mac_rewriting_table
+match key:           EXACT-00:01
+action:              set_smac
+runtime data:        00:00:00:00:05:01
+Entry has been added with handle 0
+RuntimeCmd: Adding entry to exact match table mac_rewriting_table
+match key:           EXACT-00:02
+action:              set_smac
+runtime data:        00:00:00:00:05:02
+Entry has been added with handle 1
+RuntimeCmd: Adding entry to exact match table mac_rewriting_table
+match key:           EXACT-00:03
+action:              set_smac
+runtime data:        00:00:00:00:05:03
+Entry has been added with handle 2
+RuntimeCmd: 

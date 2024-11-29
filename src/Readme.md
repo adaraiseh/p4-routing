@@ -1,3 +1,11 @@
+This repository is used by me to share research experiments based on P4. 
+
+**Install P4utils on a clean Ubuntu 22.03** - this process will take a long time
+```
+wget -O install-p4-dev.sh https://raw.githubusercontent.com/adaraiseh/p4-routing/refs/heads/master/install-p4-dev.sh
+bash install-p4-dev.sh
+```
+
 ### Introduction ###
 
 This demo shows how to implement a basic IP routers with static routing entries using P4, BMv2 and Mininet. 
@@ -23,42 +31,41 @@ The router.p4 program defines the data plane of IP routers. Note that the contro
 The structure of the test network is shown below. Each network device has been configured with the **router.p4** program. 
 
 <p align="center">
-  <img src="images/network.png" />
+  <img src="images/NodeIpAndMACInfo.png" />
 </p>
 
+<p align="center">
+  <img src="images/Networks.png" />
+</p>
+
+The choice of this topology results from the following **paper[1]**
+
+```
+.
+├─ network.py              # Try with "sudo python3 FatTree.py" boost mininet with CLI 
+├─ src\
+├───── basic.p4                # for p4 switch
+├───── r1-commands.txt         # commands file for router 1
+├───── r2-commands.txt         # commands file for router 2
+├───── router.p4               # for p4 router
+├───── s1-commands.txt         # commands file for switch &1.2.3.4
+├───── s2-commands.txt
+├───── s3-commands.txt
+└───── s4-commands.txt
+```
 
 ### Demo ###
 
 1. First of all you need to setup the environment on your Linux machine.
-2. Enter the ip-routing/ directory.
+2. Run the following command to compile P4 programs and run the network.py mininet topology.
 
-`cd ip-routing/`
+`make`
 
-3. Run the Mininet topology.
-
-`sudo python topo.py --behavioral-exe simple_switch --json p4include/router.json`
-
-4. In the Mininet console, check if ping between h1 and h2 works (it shouldn't!)
+3. In the Mininet console, check if ping between h1 and h2 works
 
 `h1 ping h2`
+or `h1 ping h6` etc.
 
-5. As expected ping doesn't work, because the static rules weren't populated by control plane. Populate static rules manually by invoking:
+4. To cleanup after run
 
-`./install_flow_rules.sh`
-
-6. You should see that rules have been installed on the switches. Run ping again:
-
-`h1 ping h2`
-
-`pingall`
-
-7. Communication between hosts should work properly.
-
-### Conclusions & next steps ###
-
-This demo presents how to implement IP routers using P4. I encourage you to analyze how the router.p4 program has been implemented and try to implement your own from scratch.
-
-The P4 and Mininet provides nice tools to make network prototypes.
-
-As the next step it would be challanging to implement some control-plane operations like OSPF dynamic routing or L2 link discovery based on the LLDP protocol. 
-
+`make clean`

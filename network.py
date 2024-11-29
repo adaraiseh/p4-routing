@@ -5,31 +5,31 @@ net = NetworkAPI()
 net.setLogLevel('info')
 
 #Switches
-net.addP4Switch('s1', cli_input='s1-commands.txt')
+net.addP4Switch('s1', cli_input='src/s1-commands.txt')
 net.setThriftPort('s1',9081)
-net.addP4Switch('s2', cli_input='s2-commands.txt')
+net.addP4Switch('s2', cli_input='src/s2-commands.txt')
 net.setThriftPort('s2',9082)
-net.addP4Switch('s3', cli_input='s3-commands.txt')
+net.addP4Switch('s3', cli_input='src/s3-commands.txt')
 net.setThriftPort('s3',9083)
-net.addP4Switch('s4', cli_input='s4-commands.txt')
+net.addP4Switch('s4', cli_input='src/s4-commands.txt')
 net.setThriftPort('s4',9084)
 
 # Routers
 # There is no p4router API in p4utils.mininetlib.network_API, 
 # use a specific p4 script that implements the router functionality.
-net.addP4Switch('r1', cli_input='r1-commands.txt')
+net.addP4Switch('r1', cli_input='src/r1-commands.txt')
 net.setThriftPort('s4',9091)
-net.addP4Switch('r2', cli_input='r2-commands.txt')
+net.addP4Switch('r2', cli_input='src/r2-commands.txt')
 net.setThriftPort('s4',9092)
 
 # P4 files
-net.setP4Source('s1','basic.p4')
-net.setP4Source('s2','basic.p4')
-net.setP4Source('s3','basic.p4')
-net.setP4Source('s4','basic.p4')
+net.setP4Source('s1','src/basic.p4')
+net.setP4Source('s2','src/basic.p4')
+net.setP4Source('s3','src/basic.p4')
+net.setP4Source('s4','src/basic.p4')
 
-net.setP4Source('r1','router.p4')
-net.setP4Source('r2','router.p4')
+net.setP4Source('r1','src/router.p4')
+net.setP4Source('r2','src/router.p4')
 
 #Hosts
 net.addHost('h1')
