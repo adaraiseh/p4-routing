@@ -21,7 +21,7 @@ run:
 clean:
 	@echo "Cleaning up PCAP, logs, Mininet files, P4I, and JSON files..."
 	$(SUDO) rm -rf $(PCAP_DIR) $(LOG_DIR) $(MININET_LOG_DIR)
-	$(SUDO) rm -f $(SRC_DIR)$(P4I_FILES) $(SRC_DIR)$(JSON_FILES)
+	$(SUDO) rm -f $(SRC_DIR)$(P4I_FILES) $(SRC_DIR)$(JSON_FILES) $(JSON_FILES)
 	@echo "Running Mininet cleanup..."
 	$(SUDO) mn -c
 	@echo "Cleanup complete!"
