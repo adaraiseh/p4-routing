@@ -1,4 +1,5 @@
 # Variables
+SUDO = sudo
 PYTHON = python3
 SCRIPT = network.py
 PCAP_DIR = pcap/
@@ -11,12 +12,12 @@ MININET_LOG_DIR = log/
 # Run the P4 simulation script
 run:
 	@echo "Running the P4 network simulation..."
-	$(PYTHON) $(SCRIPT)
+	$(SUDO) $(PYTHON) $(SCRIPT)
 
 # Clean up generated files, Mininet, and logs
 clean:
 	@echo "Cleaning up PCAP, logs, and Mininet files..."
-	rm -rf $(PCAP_DIR) $(LOG_DIR) $(MININET_LOG_DIR)
+	$(SUDO) rm -rf $(PCAP_DIR) $(LOG_DIR) $(MININET_LOG_DIR)
 	@echo "Running Mininet cleanup..."
 	sudo mn -c
 	@echo "Cleanup complete!"
