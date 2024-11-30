@@ -3,3 +3,5 @@
 *.p4i
 *.p4rt
 *.json
+*.pcap
+*.log
