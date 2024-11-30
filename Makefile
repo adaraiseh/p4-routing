@@ -15,7 +15,7 @@ JSON_FILES = *.json
 # Run the P4 simulation script
 run:
 	@echo "Running the P4 network simulation..."
-	$(SUDO) $(PYTHON) $(SRC_DIR)$(SCRIPT)
+	$(SUDO) $(PYTHON) $(SCRIPT)
 
 # Clean up generated files, Mininet, logs, and temporary files
 clean:

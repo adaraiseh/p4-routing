@@ -17,10 +17,10 @@ net.setThriftPort('s4',9084)
 # Routers
 # There is no p4router API in p4utils.mininetlib.network_API, 
 # use a specific p4 script that implements the router functionality.
-net.addP4Switch('r1', cli_input='src/r1-commands.txt')
-net.setThriftPort('s4',9091)
+net.addP4Switch('r1')
+net.setThriftPort('r1',9091)
 net.addP4Switch('r2', cli_input='src/r2-commands.txt')
-net.setThriftPort('s4',9092)
+net.setThriftPort('r2',9092)
 
 # P4 files
 net.setP4Source('s1','src/basic.p4')
