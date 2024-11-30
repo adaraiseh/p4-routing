@@ -61,11 +61,22 @@ The choice of this topology results from the following **paper[1]**
 
 `make`
 
-3. In the Mininet console, check if ping between h1 and h2 works
+3. In a seprate window run the controller:
+
+`python3 controller.py`
+
+4. In the Mininet console, check if ping between h1 and h2 works
 
 `h1 ping h2`
 or `h1 ping h6` etc.
 
-4. To cleanup after run
+5. To cleanup after run
 
 `make clean`
+
+### TODO ###
+
+1. [P4] Add diffserv to routing_table.
+2. [P4/hosts] Implement INT with traffic generator and store results.
+3. [network] Expand the network Topo.
+4. [controller] Implement RL in controller.
