@@ -1,7 +1,7 @@
 # Variables
 SUDO = sudo
 PYTHON = python3
-SCRIPT = network.py
+NETWORK = network.py
 SRC_DIR = src/
 PCAP_DIR = pcap/
 LOG_DIR = logs/
@@ -14,8 +14,8 @@ JSON_FILES = *.json
 
 # Run the P4 simulation script
 run:
-	@echo "Running the P4 network simulation..."
-	$(SUDO) $(PYTHON) $(SCRIPT)
+	@echo "Running the P4 Network Simulation ..."
+	$(SUDO) $(PYTHON) $(NETWORK)
 
 # Clean up generated files, Mininet, logs, and temporary files
 clean:

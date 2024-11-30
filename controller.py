@@ -39,19 +39,45 @@ class Controller:
             controller.table_add("mac_rewriting_table", "set_smac", ["1"], ["00:00:00:00:05:01"])
             controller.table_add("mac_rewriting_table", "set_smac", ["2"], ["00:00:00:00:05:02"])
             controller.table_add("mac_rewriting_table", "set_smac", ["3"], ["00:00:00:00:05:03"])
+
         elif router_name == 'r2':
-            print("TODO")
+            controller.table_add("routing_table", "ipv4_forward", ["10.0.3.0/24"], ["10.0.3.1", "2"])
+            controller.table_add("routing_table", "ipv4_forward", ["10.0.4.0/24"], ["10.0.4.1", "3"])
+            controller.table_add("routing_table", "ipv4_forward", ["10.0.1.0/24"], ["192.168.1.1", "1"])
+            controller.table_add("routing_table", "ipv4_forward", ["10.0.2.0/24"], ["192.168.1.1", "1"])
+
+            controller.table_add("switching_table", "set_dmac", ["10.0.3.1"], ["00:00:00:00:03:01"])
+            controller.table_add("switching_table", "set_dmac", ["10.0.4.1"], ["00:00:00:00:04:01"])
+            controller.table_add("switching_table", "set_dmac", ["192.168.1.1"], ["00:00:00:00:05:01"])
+
+
+            controller.table_add("mac_rewriting_table", "set_smac", ["1"], ["00:00:00:00:06:01"])
+            controller.table_add("mac_rewriting_table", "set_smac", ["2"], ["00:00:00:00:06:02"])
+            controller.table_add("mac_rewriting_table", "set_smac", ["3"], ["00:00:00:00:06:03"])
 
     def program_switch(self, switch_name):
         controller = self.controllers[switch_name]
         if switch_name == 's1':
-            print("TODO")
+            controller.table_set_default("ipv4_lpm", "drop")
+            controller.table_add("ipv4_lpm", "ipv4_forward", ["10.0.1.10/32"], ["00:00:0a:00:01:01", "2"])
+            controller.table_add("ipv4_lpm", "ipv4_forward", ["10.0.1.20/32"], ["00:00:0a:00:01:02", "3"])
+            controller.table_add("ipv4_lpm", "ipv4_forward", ["10.0.0.0/16"], ["00:00:00:00:05:02", "1"])
+
         elif switch_name == 's2':
-            print("TODO")
+            controller.table_set_default("ipv4_lpm", "drop")
+            controller.table_add("ipv4_lpm", "ipv4_forward", ["10.0.2.10/32"], ["00:00:0a:00:02:01", "2"])
+            controller.table_add("ipv4_lpm", "ipv4_forward", ["10.0.0.0/16"], ["00:00:00:00:05:03", "1"])
+
         elif switch_name == 's3':
-            print("TODO")
+            controller.table_set_default("ipv4_lpm", "drop")
+            controller.table_add("ipv4_lpm", "ipv4_forward", ["10.0.3.10/32"], ["00:00:0a:00:03:01", "2"])
+            controller.table_add("ipv4_lpm", "ipv4_forward", ["10.0.3.20/32"], ["00:00:0a:00:03:02", "3"])
+            controller.table_add("ipv4_lpm", "ipv4_forward", ["10.0.0.0/16"], ["00:00:00:00:06:02", "1"])
+
         elif switch_name == 's4':
-            print("TODO")
+            controller.table_set_default("ipv4_lpm", "drop")
+            controller.table_add("ipv4_lpm", "ipv4_forward", ["10.0.4.10/32"], ["00:00:0a:00:04:01", "2"])
+            controller.table_add("ipv4_lpm", "ipv4_forward", ["10.0.0.0/16"], ["00:00:00:00:06:03", "1"])
 
 if __name__ == "__main__":
     Controller()
