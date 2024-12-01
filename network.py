@@ -6,21 +6,21 @@ net.setLogLevel('info')
 
 #Switches
 #net.addP4Switch('s1', cli_input='src/s1-commands.txt')
-net.addP4Switch('s1', priority_queues_num=4) 
+net.addP4Switch('s1', priority_queues_num=4, enable_debugger=True, log_dir='logs') 
 net.setThriftPort('s1',9081)
-net.addP4Switch('s2', priority_queues_num=4)
+net.addP4Switch('s2', priority_queues_num=4, enable_debugger=True, log_dir='logs')
 net.setThriftPort('s2',9082)
-net.addP4Switch('s3', priority_queues_num=4)
+net.addP4Switch('s3', priority_queues_num=4, enable_debugger=True, log_dir='logs')
 net.setThriftPort('s3',9083)
-net.addP4Switch('s4', priority_queues_num=4)
+net.addP4Switch('s4', priority_queues_num=4, enable_debugger=True, log_dir='logs')
 net.setThriftPort('s4',9084)
 
 # Routers
 # There is no p4router API in p4utils.mininetlib.network_API, 
 # use a specific p4 script that implements the router functionality.
-net.addP4Switch('r1', priority_queues_num=4)
+net.addP4Switch('r1', priority_queues_num=4, enable_debugger=True, log_dir='logs')
 net.setThriftPort('r1',9091)
-net.addP4Switch('r2', priority_queues_num=4)
+net.addP4Switch('r2', priority_queues_num=4, enable_debugger=True, log_dir='logs')
 net.setThriftPort('r2',9092)
 
 # P4 files
@@ -122,7 +122,9 @@ net.setDefaultRoute('h6', '10.0.4.5')
 
 #net.mixed()
 net.enablePcapDumpAll()
-#net.enableLogAll()
+net.setLogLevel(logLevel='info')
+net.enableDebuggerAll()
+net.enableLogAll()
 
 net.enableCli()
 

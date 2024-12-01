@@ -105,10 +105,9 @@ control ingress(inout headers hdr,
             // Best Effort (default priority)
             standard_metadata.priority = 3;
         }
-        
+
         routing_table.apply();
     }
-
 }
 
 control egress(inout headers hdr,

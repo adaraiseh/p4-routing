@@ -25,9 +25,3 @@ clean:
 	@echo "Running Mininet cleanup..."
 	$(SUDO) mn -c
 	@echo "Cleanup complete!"
-
-# Initialize necessary directories
-init:
-	@echo "Creating necessary directories..."
-	mkdir -p $(PCAP_DIR) $(LOG_DIR) $(MININET_LOG_DIR)
-	@echo "Directories initialized!"
