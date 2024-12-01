@@ -26,10 +26,14 @@ class Controller:
     def program_router(self, router_name):
         controller = self.controllers[router_name]
         if router_name == 'r1':
-            controller.table_add("routing_table", "ipv4_forward", ["10.0.1.0/24"], ["10.0.1.1", "2"])
-            controller.table_add("routing_table", "ipv4_forward", ["10.0.2.0/24"], ["10.0.2.1", "3"])
-            controller.table_add("routing_table", "ipv4_forward", ["10.0.3.0/24"], ["192.168.1.2", "1"])
-            controller.table_add("routing_table", "ipv4_forward", ["10.0.4.0/24"], ["192.168.1.2", "1"])
+            controller.table_add("routing_table", "ipv4_forward", ["10.0.1.0/24", "0x00"], ["10.0.1.1", "2"]) # default best effort queue (queue 4)
+            controller.table_add("routing_table", "ipv4_forward", ["10.0.1.0/24", "0x2E"], ["10.0.1.1", "2"]) # same route (queue 1)
+            controller.table_add("routing_table", "ipv4_forward", ["10.0.1.0/24", "0x18"], ["10.0.1.1", "2"]) # same route (queue 2)
+            controller.table_add("routing_table", "ipv4_forward", ["10.0.1.0/24", "0x14"], ["10.0.1.1", "2"]) # same route (queue 3)
+
+            controller.table_add("routing_table", "ipv4_forward", ["10.0.2.0/24", "0x00"], ["10.0.2.1", "3"])
+            controller.table_add("routing_table", "ipv4_forward", ["10.0.3.0/24", "0x00"], ["192.168.1.2", "1"])
+            controller.table_add("routing_table", "ipv4_forward", ["10.0.4.0/24", "0x00"], ["192.168.1.2", "1"])
 
             controller.table_add("switching_table", "set_dmac", ["10.0.1.1"], ["00:00:00:00:01:01"])
             controller.table_add("switching_table", "set_dmac", ["10.0.2.1"], ["00:00:00:00:02:01"])
@@ -41,10 +45,10 @@ class Controller:
             controller.table_add("mac_rewriting_table", "set_smac", ["3"], ["00:00:00:00:05:03"])
 
         elif router_name == 'r2':
-            controller.table_add("routing_table", "ipv4_forward", ["10.0.3.0/24"], ["10.0.3.1", "2"])
-            controller.table_add("routing_table", "ipv4_forward", ["10.0.4.0/24"], ["10.0.4.1", "3"])
-            controller.table_add("routing_table", "ipv4_forward", ["10.0.1.0/24"], ["192.168.1.1", "1"])
-            controller.table_add("routing_table", "ipv4_forward", ["10.0.2.0/24"], ["192.168.1.1", "1"])
+            controller.table_add("routing_table", "ipv4_forward", ["10.0.3.0/24", "0x00"], ["10.0.3.1", "2"])
+            controller.table_add("routing_table", "ipv4_forward", ["10.0.4.0/24", "0x00"], ["10.0.4.1", "3"])
+            controller.table_add("routing_table", "ipv4_forward", ["10.0.1.0/24", "0x00"], ["192.168.1.1", "1"])
+            controller.table_add("routing_table", "ipv4_forward", ["10.0.2.0/24", "0x00"], ["192.168.1.1", "1"])
 
             controller.table_add("switching_table", "set_dmac", ["10.0.3.1"], ["00:00:00:00:03:01"])
             controller.table_add("switching_table", "set_dmac", ["10.0.4.1"], ["00:00:00:00:04:01"])

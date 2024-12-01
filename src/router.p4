@@ -4,7 +4,8 @@
 
 const bit<16> TYPE_IPV4 = 0x0800;
 
-typedef bit<9>  egressSpec_t;
+typedef bit<9> egressSpec_t;
+typedef bit<3> priorityQueue_t;
 typedef bit<48> macAddr_t;
 typedef bit<32> ip4Addr_t;
 
@@ -66,8 +67,6 @@ parser RouterParser(packet_in packet,
 
 }
 
-
-
 control ingress(inout headers hdr,
                 inout metadata meta,
                 inout standard_metadata_t standard_metadata) {
@@ -85,6 +84,7 @@ control ingress(inout headers hdr,
     table routing_table {
         key = {
             hdr.ipv4.dstAddr: lpm;
+            hdr.ipv4.diffserv: exact;
         }
         actions = {
             ipv4_forward;
@@ -95,6 +95,17 @@ control ingress(inout headers hdr,
     }
 
     apply {
+        if (hdr.ipv4.diffserv == 0x2E) { // EF
+            standard_metadata.priority = 0;
+        } else if (hdr.ipv4.diffserv == 0x18) { // CS3
+            standard_metadata.priority = 1;
+        } else if (hdr.ipv4.diffserv == 0x14 || hdr.ipv4.diffserv == 0x16 || hdr.ipv4.diffserv == 0x1A) { // AF21, AF22, AF23
+            standard_metadata.priority = 2;
+        } else {
+            // Best Effort (default priority)
+            standard_metadata.priority = 3;
+        }
+        
         routing_table.apply();
     }
 
